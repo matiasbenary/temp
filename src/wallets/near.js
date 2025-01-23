@@ -50,7 +50,7 @@ export class Wallet {
     this.selector = setupWalletSelector({
       network: this.networkId,
       modules: [
-        setupMyNearWallet(),
+        setupMyNearWallet({walletUrl:"https://localhost:1234"}),
         setupHereWallet(),
         setupLedger(),
         setupMeteorWallet(),
@@ -138,7 +138,8 @@ export class Wallet {
       ],
     });
 
-    return providers.getTransactionLastResult(outcome);
+    console.log(providers,outcome);
+    return await providers.getTransactionLastResult(outcome);
   };
 
   /**
